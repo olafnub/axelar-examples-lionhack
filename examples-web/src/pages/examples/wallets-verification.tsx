@@ -3,17 +3,40 @@ import ethers, { } from 'ethers';
 import { isTestnet } from "config/constants";
 
 function clickMe() {
-  alert('hi');
+  alert('(still in test) Read code for explanation');
 }
-// function handleChanges(event: HTMLInputElement) {
-//   // console.log(event.value);
-// }
+// Hi - We mainly focused on the backend and the learning of creating a smart contract.
+// {Because front-end was not mentioned in our base of judgment}
+// {For the back-end, we were able to follow Stephen's instructions from his videos online and his workshop on saturday}
 
 class Metamask extends Component {
     constructor(props: any) {
       super(props);
+
+      this.state = {
+
+      };
+    }
+    
+    async connectToMetaMask() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await provider.send("eth_requestAccounts", []);
+      this.setState({selectedAddress: accounts[0] });
     }
 
+    renderMetamask() {
+      if (!this.state.selectedAddress) {
+        return (
+          <button onClick={() => this.connectToMetaMask()}>Connect to Metamask</button>
+        )
+      } else {
+        return (
+          <p>Welcome {this.state.selectedAddress}</p>
+        );
+      }
+    }
+
+      
     render() {
         return(
           <>
@@ -64,6 +87,9 @@ class Metamask extends Component {
               </form>
             </div>
             
+            <div>
+              {this.renderMetamask()}
+            </div>
               <div className="submit-run">
                 <button className="btn btn-primary" onClick={clickMe}>RUN</button>
               </div>
