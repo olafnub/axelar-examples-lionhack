@@ -31,6 +31,12 @@ const Home: NextPage = () => {
             description="Send a NFT token from source chain to the destination chain"
             url="/examples/nft-linker"
           />
+          <Card
+            classname="mx-2 my-2"
+            title="Multichain Wallet Ownership Verification"
+            description="Prove your ownership of wallets across multiple chains"
+            url="/examples/wallets-verification"
+            />
       </div>
     </div>
   );
